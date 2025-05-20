@@ -118,3 +118,16 @@ CREATE TABLE ARBITRO_PARTIDA (
 	PRIMARY KEY (rg, sigla, ano, cnpj_man, cnpj_vis),
 	FOREIGN KEY (sigla, ano, cnpj_man, cnpj_vis) REFERENCES PARTIDA(sigla, ano, cnpj_man, cnpj_vis)
 );
+
+CREATE TABLE JOGADOR_PARTIDA (
+	cpf VARCHAR(11),
+	sigla VARCHAR(10),
+	ano INT,
+	cnpj_man VARCHAR(14),
+	cnpj_vis VARCHAR(14),
+	n_gols INT,
+	PRIMARY KEY (cpf, sigla, ano, cnpj_man, cnpj_vis),
+	FOREIGN KEY (sigla, ano, cnpj_man, cnpj_vis) REFERENCES PARTIDA(sigla, ano, cnpj_man, cnpj_vis),
+	FOREIGN KEY (cpf) REFERENCES JOGADOR(cpf)
+	
+);
