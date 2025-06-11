@@ -22,7 +22,7 @@ CREATE PROCEDURE calc_roots (IN a FLOAT, IN b FLOAT, IN delta FLOAT, OUT root_1 
 BEGIN
 	IF (delta >= 0) THEN
 		SET root_1 = (-b + SQRT(delta)) / (2*a);
-		SET root_2 = (-b - SQRT(delta)) / (2*a);		
+		SET root_2 = (-b - SQRT(delta)) / (2*a);
 	END IF;
 END //
 
@@ -35,7 +35,7 @@ BEGIN
 	CALL calc_delta (a, b, c, delta);
 	CALL calc_roots (a, b, delta, root_1, root_2);
 	
-	IF (delta > 0) THEN
+	IF (delta >= 0) THEN
 		INSERT INTO root_quadratic_equation(a, b, c, delta, root_1, root_2) VALUES (a, b, c, delta, root_1, root_2);
 		SELECT 'As raízes foram inseridas no banco com sucesso.';
 	ELSE
@@ -43,4 +43,6 @@ BEGIN
 	END IF;
 END //
 
-CALL calc_root_quadratic_equation(-1,4,-3);
+DELIMITER ;
+
+CALL calc_root_quadratic_equation(1,-6,9);
